@@ -12,6 +12,4 @@ router.route("/login").post(rh.login);
 router.route("/get-all").get(rh.getAll);
 router.route("/get-profile").get(auth,rh.getProfile);
 
-
-
 export default router;
