@@ -56,51 +56,51 @@
 //             <input type="text" className="form-control" id="name"   value={state.name}
 // />
 //           </div>
-//         <div class="mb-3">
+//         <div className="mb-3">
 //           <label htmlFor="email" className="form-label">Email address</label>
 //           <input type="email" className="form-control" id="email"  value={state.email}
 //             onChange={handleChange}/>
 //         </div>
-//         <div class="mb-3">
+//         <div className="mb-3">
 //             <label htmlFor="phone" className="form-label">Phone</label>
 //             <input type="text" className="form-control" id="phone"  value={state.phone}
 //             onChange={handleChange}/>
 //           </div>
-//         <div class="mb-3">
+//         <div className="mb-3">
 //           <label htmlFor="place" className="form-label">Place</label>
 //           <input type="text" className="form-control" id="place"  value={state.place}
 //             onChange={handleChange} />
 //         </div>
-//         <div class="mb-3">
-//             <label htmlFor="district" class="form-label">District</label>
-//             <input type="text" class="form-control" id="district"/>
+//         <div className="mb-3">
+//             <label htmlFor="district" className="form-label">District</label>
+//             <input type="text" className="form-control" id="district"/>
 //           </div>
-//         <div class="mb-3">
+//         <div className="mb-3">
 //             <label htmlFor="state" className="form-label">State</label>
 //             <input type="text" className="form-control" id="state"  value={state.state}
 //             onChange={handleChange}/>
 //           </div>
-//           <div class="mb-3">
-//             <label for="role" class="form-label">Post</label>
-//             <input type="text" class="form-control" id="role" value={state.role}
+//           <div className="mb-3">
+//             <label for="role" className="form-label">Post</label>
+//             <input type="text" className="form-control" id="role" value={state.role}
 //             onChange={handleChange} />
 //           </div>
-//           <div class="mb-3">
+//           <div className="mb-3">
 //             <label for="Dateofbirth" className="form-label">Date of birth</label>
 //             <input type="text" className="form-control" id="date" value={state.date}
 //             onChange={handleChange}/>
 //           </div>
-//           <div class="mb-3">
+//           <div className="mb-3">
 //             <label htmlFor="jdate" className="form-label">Join Date</label>
 //             <input type="text" className="form-control" id="jdate" value={state.jdate}
 //             onChange={handleChange}/>
 //           </div>
-//           <div class="mb-3">
+//           <div className="mb-3">
 //             <label htmlFor="exp" className="form-label">Experience</label>
 //             <input type="text" className="form-control" id="exp" value={state.exp}
 //             onChange={handleChange}/>
 //           </div>
-//           <div class="mb-3">
+//           <div className="mb-3">
 //             <label htmlFor="password" className="form-label">Password</label>
 //             <input type="password" className="form-control" id="password" value={state.password}
 //             onChange={handleChange} />
@@ -158,7 +158,6 @@ export default function RegForm() {
     const jdate=jdateInputRef.current.value;
     const exp=expInputRef.current.value;
     const password = passwordInputRef.current.value;
-
     
     // nameInputRef.current.value = '';
     // emailInputRef.current.value = '';
@@ -186,43 +185,43 @@ axios.post(`http://localhost:3000/api/register`,userData)
         <label htmlFor="name" className="form-label">Name</label>
             <input type="text" className="form-control" id="name"   ref={nameInputRef}/>
           </div>
-        <div class="mb-3">
+        <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
           <input type="email" className="form-control" id="email"  ref={emailInputRef}/>
         </div>
-        <div class="mb-3">
+        <div className="mb-3">
             <label htmlFor="phone" className="form-label">Phone</label>
             <input type="text" className="form-control" id="phone"  ref={phoneInputRef}/>
           </div>
-        <div class="mb-3">
+        <div className="mb-3">
           <label htmlFor="place" className="form-label">Place</label>
           <input type="text" className="form-control" id="place"  ref={placeInputRef} />
         </div>
-        <div class="mb-3">
-            <label htmlFor="district" class="form-label">District</label>
-            <input type="text" class="form-control" id="district" ref={districtInputRef}/>
+        <div className="mb-3">
+            <label htmlFor="district" className="form-label">District</label>
+            <input type="text" className="form-control" id="district" ref={districtInputRef}/>
           </div>
-        <div class="mb-3">
+        <div className="mb-3">
             <label htmlFor="state" className="form-label">State</label>
             <input type="text" className="form-control" id="state" ref={stateInputRef}/>
           </div>
-          <div class="mb-3">
-            <label for="role" class="form-label">Post</label>
-            <input type="text" class="form-control" id="role" ref={roleInputRef}/>
+          <div className="mb-3">
+            <label htmlFor="role" className="form-label">Post</label>
+            <input type="text" className="form-control" id="role" ref={roleInputRef}/>
           </div>
-          <div class="mb-3">
-            <label for="Dateofbirth" className="form-label">Date of birth</label>
+          <div className="mb-3">
+            <label htmlFor="Dateofbirth" className="form-label">Date of birth</label>
             <input type="text" className="form-control" id="date" ref={dateInputRef}/>
           </div>
-          <div class="mb-3">
+          <div className="mb-3">
             <label htmlFor="jdate" className="form-label">Join Date</label>
             <input type="text" className="form-control" id="jdate" ref={jdateInputRef}/>
           </div>
-          <div class="mb-3">
+          <div className="mb-3">
             <label htmlFor="exp" className="form-label">Experience</label>
             <input type="text" className="form-control" id="exp" ref={expInputRef}/>
           </div>
-          <div class="mb-3">
+          <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
             <input type="password" className="form-control" id="password" ref={passwordInputRef}  />
           </div>

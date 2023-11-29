@@ -51,4 +51,4 @@ password:{
 }
 });
 
-export default mongoose.model.Logins || mongoose.model("Login", schema);
+export default mongoose.model.employees || mongoose.model("employee", schema);
