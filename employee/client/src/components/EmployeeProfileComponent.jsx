@@ -16,25 +16,44 @@ export default function EmpData(){
     },[]);
 
 //  UI
-return(
+return (
     <>
     <div className="listTable">
 
         <h2>EMPLOYEE LIST</h2>
 
-        {Lists.map((list) => {
+     
+     
+        <table className="table table-success table-striped table-bordered border-primary">
+        <thead>
+          <tr>
+          <th scope="col">SL No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Department</th>
+          <th scope="col">Phone</th>
+          <th scope="col"></th>
+          
+          </tr>
+        </thead>
+        <tbody>
+        {Lists.map((list,index) => {
        return (
-         <div className="design">
-          <div className="refer" key={list.id}>
-           <p className="name">Name : {list.name}</p>
-             <p className="email">Email : {list.email}</p>
-             <p className="phone"> Comment : {list.phone}</p>
-            
-           </div>
-          </div>
-       );
-    })
-    }
+        <tr key={index}>
+          <td>{index+1}</td>
+         <td>{list.name}</td>
+         <td>{list.email}</td>
+         <td>{list.role}</td>
+         <td>{list.phone}</td>
+         <td><button onClick="view" className="btn btn-success">view</button></td>
+         </tr>
+         )
+        })}
+      
+        </tbody>
+      </table>
+     
+ 
 
     </div>
     

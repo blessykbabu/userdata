@@ -168,6 +168,7 @@ export default function RegForm() {
 axios.post(`http://localhost:3000/api/register`,userData)
 .then ((response)=>{
    console.log(response.data)
+   alert("Registered")
 })
 .catch((error)=>{
   console.log("get eror:",error.message? error.message:error)
@@ -178,7 +179,9 @@ axios.post(`http://localhost:3000/api/register`,userData)
   
   return(
     <>
+     <h3>Employee Registeration Form</h3>
     <div className="container d-flex min-vh-100 justify-content-center align-items-center ">
+     
     <form onSubmit={handleSubmit}>
         
         <div className="mb-3">
