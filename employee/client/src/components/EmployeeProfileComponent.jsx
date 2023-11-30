@@ -1,7 +1,7 @@
 import React ,{useEffect,useState}from "react";
 
 import axios from "axios"
-export default function EmpData(){
+export default function EmployeeProfileComponent(){
     const [Lists,setLists]=useState([]);
     // api fetch for employee list
     useEffect(()=>{
@@ -24,7 +24,7 @@ return (
 
      
      
-        <table className="table table-success table-striped table-bordered border-primary">
+        <table className="table table-success table-striped  ">
         <thead>
           <tr>
           <th scope="col">SL No</th>

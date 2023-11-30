@@ -127,8 +127,10 @@
 
 
 import React, { useRef} from "react";
-import axios from "axios"
-export default function RegForm() {
+import axios from "axios";
+
+
+export default function RegFormComponent() {
   const nameInputRef = useRef(null);
   const emailInputRef = useRef(null);
   
@@ -179,9 +181,9 @@ axios.post(`http://localhost:3000/api/register`,userData)
   
   return(
     <>
-     <h3>Employee Registeration Form</h3>
+    <h3 style={{textAlign:'center'}}>Employee Registeration Form</h3>
     <div className="container d-flex min-vh-100 justify-content-center align-items-center ">
-     
+    
     <form onSubmit={handleSubmit}>
         
         <div className="mb-3">

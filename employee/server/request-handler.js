@@ -75,22 +75,22 @@ export async function register(req, res) {
 // }
 
 
-// export async function  getProfile(req,res){
-//     try{
-//         let {id}=req.user;
-//         let result=await userSchema.find({_id:id});
-//         console.log(result)
-//         if(result.length > 0){
-//             return res.status(200).send(result)
+export async function  getEmployee(req,res){
+    try{
+        let {id}=req.body;
+        let result=await userSchema.find({_id:id});
+        console.log(result)
+        if(result.length > 0){
+            return res.status(200).send(result)
 
-//         }
-//         return res.status(200).send({msg:"upload profile data"})
-//     }
-//     catch(error){
-//         console.log(error)
-//         return res.status(500).send("Error occured")
-//     }
-// }
+        }
+        return res.status(200).send({msg:"upload profile data"})
+    }
+    catch(error){
+        console.log(error)
+        return res.status(500).send("Error occured")
+    }
+}
 
  export async function  EmpList(req,res){
     try {
