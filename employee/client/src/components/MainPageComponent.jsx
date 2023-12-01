@@ -1,17 +1,21 @@
 import  React from 'react'
-import {BrowserRouter as Router,Link,Routes,Route} from 'react-router-dom'
-import RegForm from './RegFormComponent';
-import EmpData from './EmployeeProfileComponent';
-import Links from './LinkComponent';
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+
+import LinkComponent from './LinkComponent';
+import RegFormComponent from './RegFormComponent';
+import EmployeeComponent from './EmployeeComponent';
+import EmployeeProfileComponent from './EmployeeProfileComponent';
+
 export default function  MainPageComponent(){
 return(
    <>
-
+<Router>
  <Routes>
-             <Route path='/' element={<Links/>}/>
-            <Route exact path='/registration' element={<RegForm/>}/>
-            <Route path='/view' element={<EmpData/>}/>
+             <Route path='/' element={<LinkComponent/>}/>
+            <Route exact path='/registration' element={<RegFormComponent/>}/>
+            <Route path='/view' element={<EmployeeProfileComponent/>}/>
         </Routes>
+        </Router>
       
    </>
 )

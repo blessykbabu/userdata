@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router,Link,Routes,Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import RegFormComponent from "./RegFormComponent";
 import EmployeeProfileComponent from "./EmployeeProfileComponent";
 import MainPageComponent from "./MainPageComponent";
@@ -9,7 +9,7 @@ export default function LinkComponent(){
     
     <>
    
-    <Router>
+    
       
       
 <nav className="navbar navbar-expand-lg  bg-dark" >
@@ -30,7 +30,7 @@ export default function LinkComponent(){
 </nav>   
 
 
-    </Router>
+  
    
 
  

@@ -9,18 +9,22 @@ import Links from './components/LinkComponent'
 import EmployeeProfileComponent from './components/EmployeeProfileComponent'
 import RegFormComponent from './components/RegFormComponent'
 import LinkComponent from './components/LinkComponent'
-import EmployeeComponent from './components/EmployeeComponent'
+import EmployeeComponent from './components/EmployeeComponent';
+import MainPageComponent from './components/MainPageComponent'
+import Employee2 from './components/Employee2'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <RegFormComponent/>
+    {/* <RegFormComponent/> */}
     {/* <EmployeeProfileComponent/> */}
    {/* <EmployeeComponent/> */}
     
    {/* <LinkComponent/> */}
+   <MainPageComponent/>
+   {/* <Employee2/> */}
 
     </>
   )
