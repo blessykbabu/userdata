@@ -9,7 +9,7 @@ const { sign } = jwt;
 
 export async function register(req, res) {
     try {
-        let { name,email,phone,place,district,state,role,date,jdate,exp,password} = req.body;
+        let { name,email,phone,place,district,state,role,date,jdate,exp,password,cemail,id} = req.body;
         // if( username.length <= 4 && password.length <= 4) {
         //     return res.json("Invalid username or password");
         // }
@@ -20,7 +20,7 @@ export async function register(req, res) {
         }
         // let empdata={ name,email,phone,place,district,state,role,date,jdate,exp,password: hashedPass}
         // console.log("empdata",empdata)
-        let result = await userSchema.create({ name,email,phone,place,district,state,role,date,jdate,exp,password: hashedPass});
+        let result = await userSchema.create({ name,email,phone,place,district,state,role,date,jdate,exp,cemail,id,password: hashedPass});
         if(result){
             return res.status(200).send("Registration successful!");
         }else {
@@ -77,7 +77,7 @@ export async function register(req, res) {
 
 export async function  getEmployee(req,res){
     try{
-        let {id}=req.body;
+        let {id}=req.query;
         let result=await userSchema.find({_id:id});
         console.log(result)
         if(result.length > 0){

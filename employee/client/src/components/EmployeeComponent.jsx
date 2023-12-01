@@ -23,7 +23,7 @@ export default function EmployeeComponent(){
               <div className="details" key={list.id}>
                <p className="details">Name : {list.name}</p>
                  <p className="details">Email: {list.email}</p>
-                 <p className="details">phone : {list.body}</p>
+                 <p className="details">phone : {list.phone}</p>
         
                </div>
               </div>

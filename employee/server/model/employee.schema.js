@@ -45,7 +45,13 @@ jdate:{
 exp:{
   type:String
 },
-
+cemail:{
+  type:String
+},
+id:{
+  type:String,
+  unique:true
+},
 password:{
   type:String
 }
