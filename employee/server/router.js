@@ -10,7 +10,7 @@ const router = Router()
 router.route("/register").post(rh.register);
 // router.route("/login").post(rh.login);
 // router.route("/get-all").get(rh.getAll);
-router.route("/get-employee").get(rh.getEmployee);
+router.route("/get-employee/:id").get(rh.getEmployee);
 router.route("/emp-list").get(rh.EmpList)
 
 export default router;

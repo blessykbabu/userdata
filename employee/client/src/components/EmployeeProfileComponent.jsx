@@ -15,6 +15,23 @@ export default function EmployeeProfileComponent(){
       })
     },[]);
 
+  // handleclik functn for get employee profile
+
+    const handleClick = async ()=> {
+      const id = '10002'; 
+      const response = await axios.get(`http://localhost:3000/api/get-employee/${id}`)
+  .then ((response)=>{
+    
+     console.log(response.data)
+     alert("success")
+  })
+  .catch((error)=>{
+    console.log("get eror:",error.message? error.message:error)
+  
+  })
+      
+    };
+
 //  UI
 return (
     <>
@@ -45,7 +62,7 @@ return (
          <td>{list.email}</td>
          <td>{list.role}</td>
          <td>{list.phone}</td>
-         <td><button onClick="view" className="btn btn-success">view</button></td>
+         <td><button onClick={handleClick} className="btn btn-success">view</button></td>
          </tr>
          )
         })}

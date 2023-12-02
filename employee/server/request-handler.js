@@ -77,8 +77,10 @@ export async function register(req, res) {
 
 export async function  getEmployee(req,res){
     try{
-        let {id}=req.query;
-        let result=await userSchema.find({_id:id});
+       
+        // let {id}=req.params._id;
+        // console.log("id",id)
+        let result=await userSchema.find({id:req.params.id});
         console.log(result)
         if(result.length > 0){
             return res.status(200).send(result)
