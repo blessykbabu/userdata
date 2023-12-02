@@ -14,6 +14,7 @@ return(
              <Route path='/' element={<LinkComponent/>}/>
             <Route exact path='/registration' element={<RegFormComponent/>}/>
             <Route path='/view' element={<EmployeeProfileComponent/>}/>
+            <Route path='/profile/:id' element={<EmployeeComponent/>}/>
         </Routes>
         </Router>
       

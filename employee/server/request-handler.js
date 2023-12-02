@@ -80,7 +80,9 @@ export async function  getEmployee(req,res){
        
         // let {id}=req.params._id;
         // console.log("id",id)
-        let result=await userSchema.find({id:req.params.id});
+
+        let id=req.params.id;
+        let result=await userSchema.findOne({_id : id});
         console.log(result)
         if(result.length > 0){
             return res.status(200).send(result)

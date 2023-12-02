@@ -1,34 +1,34 @@
-import React ,{useEffect,useState}from "react";
-
+import React ,{useState}from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios"
 export default function EmployeeComponent(){
-    const [Lists,setLists]=useState([]);
+  const {id}=useParams();
+const [data,setData] = useState([]);
     // api fetch for INDIVIDUAL
-    useEffect(()=>{
-     axios.get(`http://localhost:3000/api/get-employee`)
+    
+     axios.get(`http://localhost:3000/api/get-employee/${id}`)
      .then((response)=>{
-         setLists(response.data);
+         setData(response.data);
      })
      .catch((error)=>{
         console.log("get eror:",error.message? error.message:error)
       
       })
-    },[]);
-    return (
-        <div className="app">
-       
-        {Lists.map((list,index) => {
+   
+
+
+    
+    
            return (
              <div className="design">
-              <div className="details" key={list.id}>
-               <p className="details">Name : {list.name}</p>
-                 <p className="details">Email: {list.email}</p>
-                 <p className="details">phone : {list.phone}</p>
+              <div className="details" >
+               <p className="details">Name : {data.name}</p>
+                 <p className="details">Email: {data.email}</p>
+                 <p className="details">phone : {data.phone}</p>
         
                </div>
               </div>
            );
-        })}
-      </div>
-    );
+       
+    
 }
