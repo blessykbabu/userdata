@@ -5,6 +5,7 @@ import LinkComponent from './LinkComponent';
 import RegFormComponent from './RegFormComponent';
 import EmployeeComponent from './EmployeeComponent';
 import EmployeeProfileComponent from './EmployeeProfileComponent';
+import EditComponent from './EditComponent';
 
 export default function  MainPageComponent(){
 return(
@@ -15,6 +16,7 @@ return(
             <Route exact path='/registration' element={<RegFormComponent/>}/>
             <Route path='/view' element={<EmployeeProfileComponent/>}/>
             <Route path='/profile/:id' element={<EmployeeComponent/>}/>
+            <Route path='edit/:id' element={<EditComponent/>}/>
         </Routes>
         </Router>
       

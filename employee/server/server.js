@@ -18,7 +18,7 @@ conn().then(() => {
             console.log(error);
             return;
         }
-        console.log("Server strted");
+        console.log("Server started");
     });
 })
 .catch(error => {

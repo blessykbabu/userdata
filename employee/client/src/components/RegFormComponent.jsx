@@ -142,8 +142,8 @@ export default function RegFormComponent() {
   const  dateInputRef=useRef(null);
   const  jdateInputRef=useRef(null);
   const expInputRef=useRef(null);
-  const IdInputRef=useRef(null);
-  const CemailInputRef=useRef(null);
+  
+  const cemailInputRef=useRef(null);
   const passwordInputRef = useRef(null);
   
   const handleSubmit = (event) => {
@@ -161,13 +161,13 @@ export default function RegFormComponent() {
     const jdate=jdateInputRef.current.value;
     const exp=expInputRef.current.value;
     const password = passwordInputRef.current.value;
-    const id=IdInputRef.current.value;
-    const cemail=CemailInputRef.current.value;
+    
+    const cemail=cemailInputRef.current.value;
     // nameInputRef.current.value = '';
     // emailInputRef.current.value = '';
     // phoneInputRef.current.value='';
     // passwordInputRef.current.value = '';
-    const userData={name,email,phone,place,district,state,role,date,jdate,exp,password,id,cemail}
+    const userData={name,email,phone,place,district,state,role,date,jdate,exp,password,cemail}
     console.log(userData)
 axios.post(`http://localhost:3000/api/register`,userData)
 .then ((response)=>{
@@ -184,7 +184,7 @@ axios.post(`http://localhost:3000/api/register`,userData)
   return(
     <>
     <h3 style={{textAlign:'center',opacity:0.88,padding:20,color:"black"}}>Employee Registeration Form</h3>
-   <div className="regfrm" style={{backgroundColor:"SlateBlue",opacity:0.77}}>
+   <div className="regfrm" style={{opacity:0.77}}>
     <div className="container mx-auto col-sm-12 col-md-12 col-lg-5 s ">
     
     <form onSubmit={handleSubmit}>
@@ -195,32 +195,32 @@ axios.post(`http://localhost:3000/api/register`,userData)
       </div>
         <div className="mb-3 "  style={{padding:20}}>
         <label htmlFor="name" className="form-label">Name</label>
-            <input type="text" className="form-control" id="name"   ref={nameInputRef}/>
+            <input type="text" className="form-control" id="name" name='name'  ref={nameInputRef}/>
           </div>
         <div className="mb-3 " style={{padding:20}}>
           <label htmlFor="email" className="form-label"> Personal Email </label>
-          <input type="email" className="form-control" id="email"  ref={emailInputRef}/>
+          <input type="email" className="form-control" id="email" name='email' ref={emailInputRef}/>
         </div>
         <div className="mb-3" style={{padding:20}}>
             <label htmlFor="phone" className="form-label">Phone</label>
-            <input type="text" className="form-control" id="phone"  ref={phoneInputRef}/>
+            <input type="text" className="form-control" id="phone" name='phone' ref={phoneInputRef}/>
           </div>
         <div className="mb-3" style={{padding:20}}>
           <label htmlFor="place" className="form-label">Place</label>
-          <input type="text" className="form-control" id="place"  ref={placeInputRef} />
+          <input type="text" className="form-control" id="place" name='place'  ref={placeInputRef} />
         </div>
         <div className="mb-3" style={{padding:20}}>
             <label htmlFor="district" className="form-label">District</label>
-            <input type="text" className="form-control" id="district" ref={districtInputRef}/>
+            <input type="text" className="form-control" id="district" name='district' ref={districtInputRef}/>
           </div>
         <div className="mb-3" style={{padding:20}}>
             <label htmlFor="state" className="form-label">State</label>
-            <input type="text" className="form-control" id="state" ref={stateInputRef}/>
+            <input type="text" className="form-control" id="state" name='state' ref={stateInputRef}/>
           </div>
          
           <div className="mb-3" style={{padding:20}}>
             <label htmlFor="Dateofbirth" className="form-label">Date of birth</label>
-            <input type="text" className="form-control" id="date" ref={dateInputRef}/>
+            <input type="text" className="form-control" id="date"  name='date' ref={dateInputRef}/>
           </div>
          
          
@@ -229,29 +229,26 @@ axios.post(`http://localhost:3000/api/register`,userData)
         <p style={{textAlign:"center",margin:10}}>COMPANY DETAILS</p>
       </div>
 
-      <div className="mb-3 f "  style={{padding:20}}>
-        <label htmlFor="empid" className="form-label">Employee Id</label>
-            <input type="text" className="form-control" id="emp-id"   ref={IdInputRef}/>
-          </div>
+      
           <div className="mb-3" style={{padding:20}}>
             <label htmlFor="role" className="form-label">Post</label>
-            <input type="text" className="form-control" id="role" ref={roleInputRef}/>
+            <input type="text" className="form-control" id="role"  name='role' ref={roleInputRef}/>
           </div>
           <div className="mb-3" style={{padding:20}}>
             <label htmlFor="jdate" className="form-label">Join Date</label>
-            <input type="text" className="form-control" id="jdate" ref={jdateInputRef}/>
+            <input type="text" className="form-control" id="jdate" name='jdate' ref={jdateInputRef}/>
           </div>
         <div className="mb-3 " style={{padding:20}}>
           <label htmlFor="cemail" className="form-label">Email address</label>
-          <input type="email" className="form-control" id="cemail"  ref={CemailInputRef}/>
+          <input type="email" className="form-control" id="cemail"  ref={cemailInputRef}/>
         </div>
         <div className="mb-3" style={{padding:20}}>
             <label htmlFor="exp" className="form-label">Experience</label>
-            <input type="text" className="form-control" id="exp" ref={expInputRef}/>
+            <input type="text" className="form-control" id="exp" name='exp' ref={expInputRef}/>
           </div>
           <div className="mb-3" style={{padding:20}}>
             <label htmlFor="" className="form-label">Password</label>
-            <input type="password" className="form-control" id="password" ref={passwordInputRef}  />
+            <input type="password" className="form-control" id="password" name='password' ref={passwordInputRef}  />
           </div>
         
         <input  style={{margin:20}}  type="Submit" value="Submit"/>

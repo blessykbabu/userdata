@@ -9,7 +9,7 @@ const { sign } = jwt;
 
 export async function register(req, res) {
     try {
-        let { name,email,phone,place,district,state,role,date,jdate,exp,password,cemail,id} = req.body;
+        let { name,email,phone,place,district,state,role,date,jdate,exp,password,cemail} = req.body;
         // if( username.length <= 4 && password.length <= 4) {
         //     return res.json("Invalid username or password");
         // }
@@ -20,7 +20,7 @@ export async function register(req, res) {
         }
         // let empdata={ name,email,phone,place,district,state,role,date,jdate,exp,password: hashedPass}
         // console.log("empdata",empdata)
-        let result = await userSchema.create({ name,email,phone,place,district,state,role,date,jdate,exp,cemail,id,password: hashedPass});
+        let result = await userSchema.create({ name,email,phone,place,district,state,role,date,jdate,exp,cemail,password: hashedPass});
         if(result){
             return res.status(200).send("Registration successful!");
         }else {
@@ -80,12 +80,13 @@ export async function  getEmployee(req,res){
        
         // let {id}=req.params._id;
         // console.log("id",id)
-
+       
         let id=req.params.id;
+        // console.log(id);
         let result=await userSchema.findOne({_id : id});
-        console.log(result)
-        if(result.length > 0){
-            return res.status(200).send(result)
+        // console.log(result)
+        if(result){
+            return res.json(result);
 
         }
         return res.status(200).send({msg:"upload profile data"})
@@ -100,6 +101,17 @@ export async function  getEmployee(req,res){
     try {
         let info=await userSchema.find();
         return res.json(info)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send("error occured")
+    }
+}
+export async function update(req,res){
+    try {
+       const{id}=req.params;
+  console.log("datas",req.body);
+  const { name,email,phone,place,district,state,role,date,jdate,exp,cemail,password: hashedPass}=req.body;
+  const replace=await userSchema.updateOne({_id:id},{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail,password: hashedPass}});
     } catch (error) {
         console.log(error)
         return res.status(500).send("error occured")
