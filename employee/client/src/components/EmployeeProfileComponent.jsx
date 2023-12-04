@@ -1,26 +1,28 @@
-import React ,{useState}from "react";
+import React ,{useEffect, useState}from "react";
 import axios from "axios"
 import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom'
 import { useParams } from "react-router-dom";
 
 
-import EmployeeComponent from "./EmployeeComponent";
+// import EmployeeComponent from "./EmployeeComponent";
 export default function EmployeeProfileComponent(){
   const {id}=useParams();
     const [Lists,setLists]=useState([]);
     // api fetch for employee list
   
 
-    
-     axios.get(`http://localhost:3000/api/emp-list`)
-     .then((response)=>{
-         setLists(response.data);
-         console.log(response)
-     })
-     .catch((error)=>{
-        console.log("get eror:",error.message? error.message:error)
-      
+    useEffect(()=>{
+      axios.get(`http://localhost:3000/api/emp-list`)
+      .then((response)=>{
+          setLists(response.data);
+          console.log(response)
       })
+      .catch((error)=>{
+         console.log("get eror:",error.message? error.message:error)
+       
+       })
+    },[])
+   
    
 
  

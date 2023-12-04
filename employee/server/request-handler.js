@@ -110,8 +110,8 @@ export async function update(req,res){
     try {
        const{id}=req.params;
   console.log("datas",req.body);
-  const { name,email,phone,place,district,state,role,date,jdate,exp,cemail,password: hashedPass}=req.body;
-  const replace=await userSchema.updateOne({_id:id},{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail,password: hashedPass}});
+  const { name,email,phone,place,district,state,role,date,jdate,exp,cemail}=req.body;
+  const replace=await userSchema.updateOne({_id:id},{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail}});
     } catch (error) {
         console.log(error)
         return res.status(500).send("error occured")
