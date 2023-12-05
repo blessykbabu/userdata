@@ -111,8 +111,9 @@ export async function update(req,res){
        const{id}=req.params;
   console.log("datas",req.body);
   const { name,email,phone,place,district,state,role,date,jdate,exp,cemail}=req.body;
-  const replace=await userSchema.updateOne({_id:id},{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail}});
-    } catch (error) {
+  const result=await userSchema.updateOne({_id:id},{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail}});
+  return res.json(result)
+} catch (error) {
         console.log(error)
         return res.status(500).send("error occured")
     }

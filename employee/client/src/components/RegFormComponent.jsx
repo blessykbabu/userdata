@@ -128,7 +128,7 @@
 
 import React, { useRef} from "react";
 import axios from "axios";
-
+import './reg.css'
 
 export default function RegFormComponent() {
   const nameInputRef = useRef(null);
@@ -183,8 +183,8 @@ axios.post(`http://localhost:3000/api/register`,userData)
   
   return(
     <>
-    <h3 style={{textAlign:'center',opacity:0.88,padding:20,color:"black"}}>Employee Registeration Form</h3>
-   <div className="regfrm" style={{opacity:0.77}}>
+    <h3 style={{textAlign:'center',padding:20,color:"black"}}>Employee Registeration Form</h3>
+   <div className="regfrm" >
     <div className="container mx-auto col-sm-12 col-md-12 col-lg-5 s ">
     
     <form onSubmit={handleSubmit}>

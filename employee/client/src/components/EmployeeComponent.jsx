@@ -1,20 +1,36 @@
 import axios from "axios"
-import React ,{useEffect, useState,useRef}from "react";
-import { useParams,Link } from "react-router-dom";
+import React ,{useEffect, useState}from "react";
+import { useParams } from "react-router-dom";
 
 export default function EmployeeComponent(){
   
 
 
-let {id}=useParams();
-const [data,setData] = useState([]);
-const[DataUpdate,SetUpdate]=useState([])
+let {id}=useParams("");
+const[DataUpdate,SetUpdate] = useState(
+  {
+    name:'',
+    email:'',
+    phone:'',
+    place:'',
+    district:'',
+    state:'',
+    role:'',
+    date:'',
+    jdate:'',
+    exp:'',
+    cemail:''
+}
+);
+
+console.log("edit data",DataUpdate)
+// const[DataUpdate,SetUpdate]=useState([])
 // console.log("id from useParams : ", id);
     // ..........api fetch for INDIVIDUAL...........
    useEffect(()=>{
     axios.get(`http://localhost:3000/api/get-employee/${id}`)
     .then((response)=>{
-           setData(response.data);
+      SetUpdate(response.data);
            console.log(response.status,response.data);
       // console.log("Single employee data : ", response.data);
        })
@@ -24,53 +40,36 @@ const[DataUpdate,SetUpdate]=useState([])
         })
    },[]) 
 
-  // .............for update data..........
-   const nameInputRef = useRef(null);
-const emailInputRef = useRef(null);
+  // .............for update DataUpdate..........
 
-const phoneInputRef =useRef(null);
-const placeInputRef =useRef(null);
-const districtInputRef=useRef(null);
-const stateInputRef=useRef(null);
-const roleInputRef=useRef(null);
-const  dateInputRef=useRef(null);
-const  jdateInputRef=useRef(null);
-const expInputRef=useRef(null);
-
-const cemailInputRef=useRef(null);
 
    
 const handleChange=(e)=>{
-  setData({...data,[e.target.name]:e.target.value});
+  console.log("Reached here")
+
+  SetUpdate((pre)=>
+  {
+    return {...pre,[e.target.name]:e.target.value}
+  })
 }
-const handleSubmit = (event) => {
-  event.preventDefault();
-  console.log("inside handlesubmit");
-  
-  const name = nameInputRef.current.value;
-  const email = emailInputRef.current.value;
-  const phone=phoneInputRef.current.value;
-  const place=placeInputRef.current.value;
-  const district=districtInputRef.current.value;
-  const  state=stateInputRef.current.value;
-  const role=roleInputRef.current.value;
-  const date=dateInputRef.current.value;
-  const jdate=jdateInputRef.current.value;
-  const exp=expInputRef.current.value;
-  const cemail=cemailInputRef.current.value;
-  const userData={name,email,phone,place,district,state,role,date,jdate,exp,cemail}
-  useEffect(()=>{
-    axios.put(`http://localhost:3000/api/update/${id}`,userData)
+const handleSubmit = (e) => {
+  console.log("Reached handlesubmit");
+   e.preventDefault();
+   const {name,email,phone,place,district,state,role,date,jdate,exp,cemail} =DataUpdate;
+   console.log("Datas",DataUpdate)
+
+    axios.put(`http://localhost:3000/api/update/${id}`,DataUpdate)
     .then ((response)=>{
       // SetUpdate(response.data);
       //  console.log(response.data)
+      console.log('updated successfully:', response.data);
        alert("updated")
     })
     .catch((error)=>{
       console.log(" axios get eror:",error.message? error.message:error)
     
     })
-  },[])
+ 
   
 }
     
@@ -78,8 +77,8 @@ const handleSubmit = (event) => {
     
            return (
             <>
-            <h3 style={{textAlign:'center',opacity:0.88,padding:20,color:"black"}}>Details Of {data.name}</h3>
-<div className="regfrm" style={{opacity:0.77}}>
+            <h3 style={{textAlign:'center',padding:20,color:"black"}}>Details Of {DataUpdate.name}</h3>
+<div className="regfrm" >
  <div className="container mx-auto col-sm-12 col-md-12 col-lg-5 s ">
  
  <form onSubmit={handleSubmit}>
@@ -90,32 +89,32 @@ const handleSubmit = (event) => {
    </div>
      <div className="mb-3 "  style={{padding:20}}>
      <label htmlFor="name" className="form-label">Name</label>
-         <input type="text" className="form-control" id="name"  name='name' value={data.name} onChange={handleChange} ref={nameInputRef}/>
+         <input type="text" className="form-control" id="name"  name='name' value={DataUpdate.name} onChange={handleChange} />
        </div>
      <div className="mb-3 " style={{padding:20}}>
        <label htmlFor="email" className="form-label"> Personal Email </label>
-       <input type="email" className="form-control" id="email" name='email' value={data.email} onChange={handleChange} ref={emailInputRef}/>
+       <input type="email" className="form-control" id="email" name='email' value={DataUpdate.email} onChange={handleChange} />
      </div>
      <div className="mb-3" style={{padding:20}}>
          <label htmlFor="phone" className="form-label">Phone</label>
-         <input type="text" className="form-control" id="phone" name='phone' value={data.phone} onChange={handleChange} ref={phoneInputRef}/>
+         <input type="text" className="form-control" id="phone" name='phone' value={DataUpdate.phone} onChange={handleChange}/>
        </div>
      <div className="mb-3" style={{padding:20}}>
        <label htmlFor="place" className="form-label">Place</label>
-       <input type="text" className="form-control" id="place" name='place' value={data.place} onChange={handleChange} ref={placeInputRef}/>
+       <input type="text" className="form-control" id="place" name='place' value={DataUpdate.place} onChange={handleChange} />
      </div>
      <div className="mb-3" style={{padding:20}}>
          <label htmlFor="district" className="form-label">District</label>
-         <input type="text" className="form-control" id="district" name='district' value={data.district} ref={districtInputRef}/>
+         <input type="text" className="form-control" id="district" name='district' value={DataUpdate.district} />
        </div>
      <div className="mb-3" style={{padding:20}}>
          <label htmlFor="state" className="form-label">State</label>
-         <input type="text" className="form-control" id="state"  name='state' value={data.state} onChange={handleChange} ref={stateInputRef}/>
+         <input type="text" className="form-control" id="state"  name='state' value={DataUpdate.state} onChange={handleChange} />
        </div>
       
        <div className="mb-3" style={{padding:20}}>
          <label htmlFor="Dateofbirth" className="form-label">Date of birth</label>
-         <input type="text" className="form-control" id="date" name='date' value={data.date} onChange={handleChange} ref={dateInputRef}/>
+         <input type="text" className="form-control" id="date" name='date' value={DataUpdate.date} onChange={handleChange} />
        </div>
       
       
@@ -127,23 +126,26 @@ const handleSubmit = (event) => {
    
        <div className="mb-3" style={{padding:20}}>
          <label htmlFor="role" className="form-label">Post</label>
-         <input type="text" className="form-control" id="role" name='role' value={data.role} onChange={handleChange}  ref={roleInputRef}/>
+         <input type="text" className="form-control" id="role" name='role' value={DataUpdate.role}  />
        </div>
        <div className="mb-3" style={{padding:20}}>
          <label htmlFor="jdate" className="form-label">Join Date</label>
-         <input type="text" className="form-control" id="jdate" name='jdate' value={data.jdate} onChange={handleChange} ref={jdateInputRef}/>
+         <input type="text" className="form-control" id="jdate" name='jdate' value={DataUpdate.jdate} />
        </div>
      <div className="mb-3 " style={{padding:20}}>
        <label htmlFor="cemail" className="form-label">Email address</label>
-       <input type="email" className="form-control" id="cemail" name='cemail' value={data.cemail} onChange={handleChange} ref={cemailInputRef}/>
+       <input type="email" className="form-control" id="cemail" name='cemail' value={DataUpdate.cemail}/>
      </div>
      <div className="mb-3" style={{padding:20}}>
          <label htmlFor="exp" className="form-label">Experience</label>
-         <input type="text" className="form-control" id="exp" value={data.exp} name='exp' onChange={handleChange} ref={expInputRef}/>
+         <input type="text" className="form-control" id="exp" value={DataUpdate.exp} name='exp'  />
        </div>
     
-       {/* <button className="btn btn-success"><Link to={`/edit/${data._id}`}  style={{textDecoration:"none",color:"white"}}>Update</Link></button> */}
-       <input  style={{margin:20}}  type="Submit" value="Update"/>
+       {/* <button className="btn btn-success"><Link to={`/edit/${DataUpdate._id}`}  style={{textDecoration:"none",color:"white"}}>Update</Link></button> */}
+       {/* <input  style={{margin:20}}  type="Submit" value="Update"/> */}
+       <button type="submit" className="btn btn-success" style={{color:"white"}}>
+                Update
+                </button>
      </div>
    </form>  
    </div>

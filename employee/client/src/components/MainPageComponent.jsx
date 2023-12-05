@@ -19,7 +19,9 @@ return(
             {/* <Route path='/edit/:id' element={<EditComponent/>}/> */}
         </Routes>
         </Router>
-      
+      <div className='home'>
+
+      </div>
    </>
 )
 }
