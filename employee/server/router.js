@@ -13,5 +13,6 @@ router.route("/register").post(rh.register);
 router.route("/get-employee/:id").get(rh.getEmployee);
 router.route("/emp-list").get(rh.EmpList)
 router.route("/update/:id").put(rh.update)
+router.route("/delete/:id").delete(rh.Delete)
 
 export default router;

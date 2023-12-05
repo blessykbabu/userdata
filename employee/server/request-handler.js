@@ -14,7 +14,7 @@ export async function register(req, res) {
         //     return res.json("Invalid username or password");
         // }
         let hashedPass = await bcrypt.hash(password, 10);
-        let userExist = await userSchema.findOne({ name });
+        let userExist = await userSchema.findOne( {$and: [ {email: email},{deleted:{$ne:true}} ] });
         if(userExist) {
             return res.status(401).send("User already exists");
         }
@@ -83,7 +83,10 @@ export async function  getEmployee(req,res){
        
         let id=req.params.id;
         // console.log(id);
-        let result=await userSchema.findOne({_id : id});
+        // let result=await userSchema.findOne({_id : id}, deleted:{$ne:true});
+        let result=await userSchema.findOne( {$and: [ {_id : id},{deleted:{$ne:true}} ] });
+
+        
         // console.log(result)
         if(result){
             return res.json(result);
@@ -99,7 +102,9 @@ export async function  getEmployee(req,res){
 
  export async function  EmpList(req,res){
     try {
-        let info=await userSchema.find();
+        let info=await userSchema.find({
+        deleted:{$ne:true}
+        });
         return res.json(info)
     } catch (error) {
         console.log(error)
@@ -116,6 +121,18 @@ export async function update(req,res){
 } catch (error) {
         console.log(error)
         return res.status(500).send("error occured")
+    }
+}
+export async function Delete(req,res){
+    try {
+        console.log("rechead here");
+        const{id}=req.params;
+        const result=await userSchema.updateOne({_id:id},{$set:{deleted:true,deletedAt:new Date}});
+        // const result=await userSchema.deleteOne({_id:id});
+       return res.json(result)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send("error occured") 
     }
 }
 

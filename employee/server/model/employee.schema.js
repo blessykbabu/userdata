@@ -4,12 +4,12 @@ const schema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true
+        
     },
     email: {
         type: String,
         required: true,
-        unique:true
+       
     },
   
     phone: {
@@ -51,7 +51,16 @@ cemail:{
 
 password:{
   type:String
+},
+deleted:{
+  type:Boolean,
+  default:false, 
+},
+deletedAt:{
+  type:Date
 }
+},{
+  timestamps:true
 });
 
 export default mongoose.model.employees || mongoose.model("employee", schema);
