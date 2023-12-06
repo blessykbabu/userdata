@@ -1,4 +1,150 @@
 
+// import userSchema from "./model/employee.schema.js";
+
+// import bcrypt from "bcrypt";
+// import jwt from "jsonwebtoken";
+
+// const { sign } = jwt;
+
+
+// export async function register(req, res) {
+//     try {
+//         let { name,email,phone,place,district,state,role,date,jdate,exp,password,cemail} = req.body;
+//         // if( username.length <= 4 && password.length <= 4) {
+//         //     return res.json("Invalid username or password");
+//         // }
+//         let hashedPass = await bcrypt.hash(password, 10);
+//         let userExist = await userSchema.findOne( {$and: [ {email: email},{deleted:{$ne:true}} ] });
+//         if(userExist) {
+//             return res.status(401).send("User already exists");
+//         }
+//         // let empdata={ name,email,phone,place,district,state,role,date,jdate,exp,password: hashedPass}
+//         // console.log("empdata",empdata)
+//         let result = await userSchema.create({ name,email,phone,place,district,state,role,date,jdate,exp,cemail,password: hashedPass});
+//         if(result){
+//             return res.status(200).send("Registration successful!");
+//         }else {
+//             return res.status(400).send("Registration failed");
+//         }
+       
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).send("Error");
+//     }
+// }
+// // export async function login(req, res) {
+// //     try {
+// //         let { name, password } = req.body;
+// //         // if( username.length < 4 && password.length < 4) {
+// //         //     return res.json("Invalid username or password");
+// //         // }
+// //         let user = await userSchema.findOne({ name });
+// //         if(!user) {
+// //             return res.status(403).send("Invalid username or password");
+// //         }
+// //         let passCheck = await bcrypt.compare(password, user.password);
+// //         if(passCheck) {
+// //             let token = await sign({
+// //                 name: user.name,
+// //                 id: user._id
+// //             },
+// //             process.env.SECRET_KEY,
+// //             {
+// //                 expiresIn: "24h"
+// //             })
+// //             return res.status(200).json({
+// //                 msg: "Login successful...",
+// //                 token: token
+// //             })
+// //         }
+// //         return res.status(403).send("invalid username or password")
+// //     } catch (error) {
+// //         console.log(error);
+// //         res.status(500).send("Error");
+// //     }
+// // }
+
+// // export async function  getAll(req,res){
+// //     try {
+// //         let info=await userSchema.find();
+// //         return res.json(info)
+// //     } catch (error) {
+// //         console.log(error)
+// //         return res.status(500).send("error occured")
+// //     }
+// // }
+
+
+// export async function  getEmployee(req,res){
+//     try{
+       
+//         // let {id}=req.params._id;
+//         // console.log("id",id)
+       
+//         let id=req.params.id;
+//         // console.log(id);
+//         // let result=await userSchema.findOne({_id : id}, deleted:{$ne:true});
+//         let result=await userSchema.findOne( {$and: [ {_id : id},{deleted:{$ne:true}} ] });
+
+        
+//         // console.log(result)
+//         if(result){
+//             return res.json(result);
+
+//         }
+//         return res.status(200).send({msg:"upload profile data"})
+//     }
+//     catch(error){
+//         console.log(error)
+//         return res.status(500).send("Error occured")
+//     }
+// }
+
+//  export async function  EmpList(req,res){
+//     try {
+//         let info=await userSchema.find({
+//         deleted:{$ne:true}
+//         });
+//         return res.json(info)
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(500).send("error occured")
+//     }
+// }
+// export async function update(req,res){
+//     try {
+//        const{id}=req.params;
+//   console.log("datas",req.body);
+//   const { name,email,phone,place,district,state,role,date,jdate,exp,cemail}=req.body;
+//   const result=await userSchema.updateOne({$and: [{_id:id},{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail}}]});
+//   return res.json(result)
+// } catch (error) {
+//         console.log(error)
+//         return res.status(500).send("error occured")
+//     }
+// }
+// export async function Delete(req,res){
+//     try {
+//         console.log("rechead here");
+//         const{id}=req.params;
+//         const result=await userSchema.updateOne({$and: [ {_id:id},{$set:{deleted:true,deletedAt:new Date}}]});
+//         // const result=await userSchema.deleteOne({_id:id});
+//        return res.json(result)
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(500).send("error occured") 
+//     }
+// }
+
+
+
+
+
+
+//    ...................formik..............................
+
+
+
 import userSchema from "./model/employee.schema.js";
 
 import bcrypt from "bcrypt";
@@ -116,7 +262,7 @@ export async function update(req,res){
        const{id}=req.params;
   console.log("datas",req.body);
   const { name,email,phone,place,district,state,role,date,jdate,exp,cemail}=req.body;
-  const result=await userSchema.updateOne({_id:id},{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail}});
+  const result=await userSchema.updateOne( {$and: [ {_id : id},{deleted:{$ne:true}} ] },{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail}});
   return res.json(result)
 } catch (error) {
         console.log(error)
@@ -127,7 +273,7 @@ export async function Delete(req,res){
     try {
         console.log("rechead here");
         const{id}=req.params;
-        const result=await userSchema.updateOne({_id:id},{$set:{deleted:true,deletedAt:new Date}});
+        const result=await userSchema.updateOne( {$and: [{_id:id},{ deleted:{$ne:true}}]},{$set:{deleted:true,deletedAt:new Date}});
         // const result=await userSchema.deleteOne({_id:id});
        return res.json(result)
     } catch (error) {
@@ -135,4 +281,11 @@ export async function Delete(req,res){
         return res.status(500).send("error occured") 
     }
 }
+
+
+
+
+
+
+
 
