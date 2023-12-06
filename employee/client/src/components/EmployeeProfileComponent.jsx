@@ -52,7 +52,7 @@ return (
           </tr>
         </thead>
         <tbody>
-        {Lists.map((list,index) => {
+        {Lists.data.map((list,index) => {
        return (
         <tr key={list._id}>
           <td>{index+1}</td>
