@@ -260,9 +260,13 @@ export async function  getEmployee(req,res){
 export async function update(req,res){
     try {
        const{id}=req.params;
+       let user=await userSchema.findOne({_id:id,deleted:{$ne:true}})
+       if(!user){
+           return res.status(401).send("Not found")
+       }
   console.log("datas",req.body);
   const { name,email,phone,place,district,state,role,date,jdate,exp,cemail}=req.body;
-  const result=await userSchema.updateOne( {$and: [ {_id : id},{deleted:{$ne:true}} ] },{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail}});
+  const result=await userSchema.updateOne( {_id : id},{$set:{ name,email,phone,place,district,state,role,date,jdate,exp,cemail}});
   return res.json(result)
 } catch (error) {
         console.log(error)
@@ -273,7 +277,11 @@ export async function Delete(req,res){
     try {
         console.log("rechead here");
         const{id}=req.params;
-        const result=await userSchema.updateOne( {$and: [{_id:id},{ deleted:{$ne:true}}]},{$set:{deleted:true,deletedAt:new Date}});
+        let user=await userSchema.findOne({_id:id,deleted:{$ne:true}})
+        if(!user){
+            return res.status(401).send("Not found")
+        }
+        const result=await userSchema.updateOne( {_id:id},{$set:{deleted:true,deletedAt:new Date}});
         // const result=await userSchema.deleteOne({_id:id});
        return res.json(result)
     } catch (error) {
