@@ -18,7 +18,7 @@ conn().then(() => {
             console.log(error);
             return;
         }
-        console.log("Server started");
+        console.log("Server started on " +process.env.PORT);
     });
 })
 .catch(error => {

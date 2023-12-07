@@ -35,7 +35,7 @@ export default function EmployeeProfileComponent(){
 //  UI
 return (
     <>
-     {serverMessage && <p>{serverMessage}</p>}
+     {serverMessage && <p style={{color:"white"}}>{serverMessage}</p>}
     <div className="listTable">
 
         <h2 style={{textAlign:"center",color:"white"}}>EMPLOYEE LIST</h2>
