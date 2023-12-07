@@ -266,7 +266,7 @@ export async function getEmployee(req, res) {
     // let result=await userSchema.findOne({_id : id}, deleted:{$ne:true});
     let result = await userSchema.findOne({
       $and: [{ _id: id }, { deleted: { $ne: true } }],
-    });
+    }).select('-password');
 
     console.log("result",result)
     if (result) {
@@ -306,11 +306,22 @@ export async function EmpList(req, res) {
       deleted: { $ne: true },
     });
     // return res.json(info);
-    let response = successFunction({
-        statusCode: 200,
-        message: "Data Recieved",
-      });
-      return res.status(200).send(response);
+    if(info){
+        let response = successFunction({
+            statusCode: 200,
+            data:info,
+            message: "Data Recieved",
+          });
+          return res.status(200).send(response);
+    }
+    else{
+        let response = errorFunction({
+            statusCode: 404,
+            message: "Data not found",
+          });
+          return res.status(404).send(response);
+    }
+    
   }
    catch (error) {
     console.log(error);
@@ -374,7 +385,7 @@ export async function update(req, res) {
     let response = successFunction({
         statusCode: 200,
         data:result,
-        message: "Data Recieved",
+        message: "Profile update successfully",
       });
       return res.status(200).send(response);
   } catch (error) {
@@ -410,7 +421,7 @@ export async function Delete(req, res) {
     let response = successFunction({
         statusCode: 200,
         data:result,
-        message: "Data Recieved",
+        message: "Deleted",
       });
       return res.status(200).send(response);
   } catch (error) {

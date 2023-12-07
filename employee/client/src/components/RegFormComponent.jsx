@@ -245,8 +245,224 @@
 
 // ..............formik.................
 
+// import React from "react";
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
+// import axios from "axios";
+// import "./reg.css";
+
+// export default function RegFormComponent() {
+//   const initialValues = {
+//     name: "",
+//     email: "",
+//     phone: "",
+//     place: "",
+//     district: "",
+//     state: "",
+//     role: "",
+//     date: "",
+//     jdate: "",
+//     exp: "",
+//     cemail: "",
+//   };
+
+//   const handleSubmit = async (values, { resetForm }) => {
+//     try {
+//       const response = await axios.post(
+//         `http://localhost:3000/api/register`,
+//         values
+//       );
+//       console.log("Form Submitted", response.data);
+//       resetForm();
+//       alert("Registered");
+//     } catch (error) {
+//       console.error("Not Submitted", error);
+//     }
+//   };
+
+//   const validate = (values) => {
+//     const errors = {};
+//     if (!values.name) {
+//       errors.name = "Required";
+//     } else if (values.name.length < 2) {
+//       errors.firstName = "Invalid name";
+//     }
+
+//     if (!values.email) {
+//       errors.email = "Required";
+//     } else if (
+//       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+//     ) {
+//       errors.email = "Invalid email address";
+//     }
+
+//     if (!values.phone) {
+//       errors.phone = "Required";
+//     }
+//     // else if (
+//     //   !/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/.test(
+//     //     values.contact
+//     //   )
+//     // ) {
+//     //   errors.phone = "Invalid phone number";
+//     // }
+//     if (!values.cemail) {
+//       errors.cemail = "Required";
+//     } else if (
+//       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+//     ) {
+//       errors.email = "Invalid email address";
+//     }
+//     if (!values.place && !values.district && !values.state && !values.date  && !values.role && !values.jdate && !values.exp && !values.jdate) {
+//       errors.place = "Required";
+//       errors.district = "Required";
+//       errors.state= "Required";
+//       errors.date="Required";
+//       errors.role= "Required";
+//       errors.jdate="Required";
+//       errors.exp=  "Required";
+//     }
+//     if(!values.password){
+//       errors.password='Required'
+//     }else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/.test(values.password)){
+//       errors.password='Invalid password'
+//     }
+
+//     return errors;
+//   };
+
+//   return (
+//     <>
+//       <h3 style={{ textAlign: "center", padding: 20, color: "black" }}>
+//         Employee Registeration Form
+//       </h3>
+//       <div className="regfrm">
+//         <div className="container mx-auto col-sm-12 col-md-12 col-lg-5">
+//           <Formik
+//             initialValues={initialValues}
+//             onSubmit={handleSubmit}
+//             validate={validate}
+//           >
+//             {({ errors, touched, isValidating }) => (
+//               <Form>
+//                 <div
+//                   className="shadow-lg bg-body rounded"
+//                   style={{ backgroundColor: "white", opacity: 0.75 }}
+//                 >
+//                   <div>
+//                     <p style={{ textAlign: "center", margin: 10 }}>
+//                       PERSONAL INFORMATION
+//                     </p>
+//                   </div>
+//                   <div className="mb-3 " style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="name" className="form-label" style={{ color:"black"}}>
+//                       Name
+//                     </label>
+//                     <Field type="text" id="name" name = "name" className="form-control"/>
+//               <ErrorMessage name="name" component="div" style={{color:"red"}}/>
+
+//                   </div>
+//                   <div className="mb-3 " style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="email" className="form-label" style={{ color:"black"}}>
+
+//                       Personal Email
+//                     </label>
+//                     <Field type="email" id="email" name = "email" className="form-control" />
+//               <ErrorMessage name="email" component="div" style={{color:"red"}}/>
+//                   </div>
+//                   <div className="mb-3" style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="phone" className="form-label" style={{ color:"black"}}>
+//                       Phone
+//                     </label>
+//                     <Field type="text" id="phone" name = "phone" className="form-control" />
+//               <ErrorMessage name="phone" component="div" style={{color:"red"}}/>
+//                   </div>
+//                   <div className="mb-3" style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="place" className="form-label" style={{ color:"black"}}>
+//                       Place
+//                     </label>
+//                     <Field type="text" id="place" name = "place" className="form-control" />
+//               <ErrorMessage name="place" component="div" style={{color:"red"}}/>
+//                   </div>
+//                   <div className="mb-3" style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="district" className="form-label" style={{ color:"black"}}>
+//                       District
+//                     </label>
+//                     <Field type="text" id="district" name = "district" className="form-control" />
+//               <ErrorMessage name="district" component="div" style={{color:"red"}}/>
+//                   </div>
+//                   <div className="mb-3" style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="state" className="form-label" style={{ color:"black"}}>
+//                       State
+//                     </label>
+//                     <Field type="text" id="state" name = "state" className="form-control"/>
+//               <ErrorMessage name="state" component="div" style={{color:"red"}}/>
+//                   </div>
+
+//                   <div className="mb-3"style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="Dateofbirth" className="form-label" style={{ color:"black"}}>
+//                       Date of birth
+//                     </label>
+//                     <Field type="text" id="date" name = "date" className="form-control" />
+//               <ErrorMessage name="date" component="div" style={{color:"red"}}/>
+//                   </div>
+
+//                   <div>
+//                     <p style={{ textAlign: "center", margin: 10 }}>
+//                       COMPANY DETAILS
+//                     </p>
+//                   </div>
+
+//                   <div className="mb-3" style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="role" className="form-label" style={{ color:"black"}}>
+//                       Post
+//                     </label>
+//                     <Field type="text" id="role" name = "role" className="form-control"/>
+//               <ErrorMessage name="role" component="div" style={{color:"red"}}/>
+//                   </div>
+//                   <div className="mb-3" style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="jdate" className="form-label" style={{ color:"black"}}>
+//                       Join Date
+//                     </label>
+//                     <Field type="text" id="jdate" name = "jdate" className="form-control" />
+//               <ErrorMessage name="jdate" component="div" style={{color:"red"}}/>
+//                   </div>
+//                   <div className="mb-3 " style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="cemail" className="form-label" style={{ color:"black"}}>
+//                       Email address
+//                     </label>
+//                     <Field type="email" id="cemail" name = "cemail" className="form-control" />
+//               <ErrorMessage name="cemail" component="div" style={{color:"red"}}/>
+//                   </div>
+//                   <div className="mb-3" style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="exp" className="form-label" style={{ color:"black"}}>
+//                       Experience
+//                     </label>
+//                     <Field type="text" id="exp" name = "exp" className="form-control"/>
+//               <ErrorMessage name="exp" component="div"  style={{color:"red"}}/>
+//                   </div>
+//                   <div className="mb-3" style={{ padding: 20,color:"red"}}>*
+//                     <label htmlFor="password" className="form-label" style={{ color:"black"}}>
+//                       Password
+//                     </label>
+//                     <Field type="password" id="password" name = "password" className="form-control"/>
+//               <ErrorMessage name="password" component="div" style={{color:"red"}}/>
+//                   </div>
+
+//                   <button className="btn btn-success m-3" type="submit">Submit</button>
+//                 </div>
+//               </Form>
+//             )}
+//           </Formik>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// .............................yup.......................
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { object, string, number } from "yup";
 import axios from "axios";
 import "./reg.css";
 
@@ -279,57 +495,6 @@ export default function RegFormComponent() {
     }
   };
 
-  const validate = (values) => {
-    const errors = {};
-    if (!values.name) {
-      errors.name = "Required";
-    } else if (values.name.length < 2) {
-      errors.firstName = "Invalid name";
-    }
-
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email address";
-    }
-
-    if (!values.phone) {
-      errors.phone = "Required";
-    } 
-    // else if (
-    //   !/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/.test(
-    //     values.contact
-    //   )
-    // ) {
-    //   errors.phone = "Invalid phone number";
-    // }
-    if (!values.cemail) {
-      errors.cemail = "Required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email address";
-    }
-    if (!values.place && !values.district && !values.state && !values.date  && !values.role && !values.jdate && !values.exp && !values.jdate) {
-      errors.place = "Required";
-      errors.district = "Required";
-      errors.state= "Required";
-      errors.date="Required";
-      errors.role= "Required";
-      errors.jdate="Required";
-      errors.exp=  "Required"; 
-    }
-    if(!values.password){
-      errors.password='Required'
-    }else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/.test(values.password)){
-      errors.password='Invalid password'
-    }
-
-    return errors;
-  };
-
   return (
     <>
       <h3 style={{ textAlign: "center", padding: 20, color: "black" }}>
@@ -340,9 +505,42 @@ export default function RegFormComponent() {
           <Formik
             initialValues={initialValues}
             onSubmit={handleSubmit}
-            validate={validate}
+            validationSchema={object().shape({
+              name: string()
+                .min(2, "Too Short!")
+                .max(50, "Too Long!")
+                .required("Required"),
+              email: string().email().required("Required"),
+
+              phone:string()
+                // .typeError("That doesn't look like a phone number")
+                // .positive("A phone number can't start with a minus")
+                // .integer("A phone number can't include a decimal point")
+                .matches(/^[6-9]\d{9}$/, "Please enter valid phone number.")
+                .min(10, "Invalid phone number,it must contain 10 digit")
+                .required("Required"),
+              place: string().required(" Required"),
+              district: string().required("Required"),
+              state: string().required("Required"),
+              date: string().required("Required"),
+              role: string().required("Required"),
+              jdate: string().required("Required"),
+              cemail: string().required("Required"),
+              exp: string().required("Required"),
+              password: string()
+                .required("Required")
+                .min(6, "Password is too short - should be 6 chars minimum"),
+            })}
           >
-            {({ errors, touched, isValidating }) => (
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+            }) => (
               <Form>
                 <div
                   className="shadow-lg bg-body rounded"
@@ -353,57 +551,153 @@ export default function RegFormComponent() {
                       PERSONAL INFORMATION
                     </p>
                   </div>
-                  <div className="mb-3 " style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="name" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3 " style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="name"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Name
                     </label>
-                    <Field type="text" id="name" name = "name" className="form-control"/>
-              <ErrorMessage name="name" component="div" style={{color:"red"}}/>
-                   
+                    <Field
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="name"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3 " style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="email" className="form-label" style={{ color:"black"}}>
-                   
+                  <div className="mb-3 " style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="email"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Personal Email
                     </label>
-                    <Field type="email" id="email" name = "email" className="form-control" />
-              <ErrorMessage name="email" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3" style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="phone" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="phone"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Phone
                     </label>
-                    <Field type="text" id="phone" name = "phone" className="form-control" />
-              <ErrorMessage name="phone" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="text"
+                      id="phone"
+                      name="phone"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="phone"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3" style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="place" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="place"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Place
                     </label>
-                    <Field type="text" id="place" name = "place" className="form-control" />
-              <ErrorMessage name="place" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="text"
+                      id="place"
+                      name="place"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="place"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3" style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="district" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="district"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       District
                     </label>
-                    <Field type="text" id="district" name = "district" className="form-control" />
-              <ErrorMessage name="district" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="text"
+                      id="district"
+                      name="district"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="district"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3" style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="state" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="state"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       State
                     </label>
-                    <Field type="text" id="state" name = "state" className="form-control"/>
-              <ErrorMessage name="state" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="text"
+                      id="state"
+                      name="state"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="state"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
 
-                  <div className="mb-3"style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="Dateofbirth" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="Dateofbirth"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Date of birth
                     </label>
-                    <Field type="text" id="date" name = "date" className="form-control" />
-              <ErrorMessage name="date" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="text"
+                      id="date"
+                      name="date"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="date"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
 
                   <div>
@@ -412,43 +706,115 @@ export default function RegFormComponent() {
                     </p>
                   </div>
 
-                  <div className="mb-3" style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="role" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="role"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Post
                     </label>
-                    <Field type="text" id="role" name = "role" className="form-control"/>
-              <ErrorMessage name="role" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="text"
+                      id="role"
+                      name="role"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="role"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3" style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="jdate" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="jdate"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Join Date
                     </label>
-                    <Field type="text" id="jdate" name = "jdate" className="form-control" />
-              <ErrorMessage name="jdate" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="text"
+                      id="jdate"
+                      name="jdate"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="jdate"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3 " style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="cemail" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3 " style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="cemail"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Email address
                     </label>
-                    <Field type="email" id="cemail" name = "cemail" className="form-control" />
-              <ErrorMessage name="cemail" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="email"
+                      id="cemail"
+                      name="cemail"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="cemail"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3" style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="exp" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="exp"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Experience
                     </label>
-                    <Field type="text" id="exp" name = "exp" className="form-control"/>
-              <ErrorMessage name="exp" component="div"  style={{color:"red"}}/>
+                    <Field
+                      type="text"
+                      id="exp"
+                      name="exp"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="exp"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
-                  <div className="mb-3" style={{ padding: 20,color:"red"}}>*
-                    <label htmlFor="password" className="form-label" style={{ color:"black"}}>
+                  <div className="mb-3" style={{ padding: 20, color: "red" }}>
+                    *
+                    <label
+                      htmlFor="password"
+                      className="form-label"
+                      style={{ color: "black" }}
+                    >
                       Password
                     </label>
-                    <Field type="password" id="password" name = "password" className="form-control"/>
-              <ErrorMessage name="password" component="div" style={{color:"red"}}/>
+                    <Field
+                      type="password"
+                      id="password"
+                      name="password"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component="div"
+                      style={{ color: "red" }}
+                    />
                   </div>
 
-                  <button className="btn btn-success m-3" type="submit">Submit</button>
+                  <button className="btn btn-success m-3" type="submit">
+                    Submit
+                  </button>
                 </div>
               </Form>
             )}

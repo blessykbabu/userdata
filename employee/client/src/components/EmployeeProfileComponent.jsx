@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 // import EmployeeComponent from "./EmployeeComponent";
 export default function EmployeeProfileComponent(){
   const {id}=useParams();
+  const [serverMessage, setServerMessage] = useState('');
     const [Lists,setLists]=useState([]);
     // api fetch for employee list
   
@@ -14,12 +15,14 @@ export default function EmployeeProfileComponent(){
     useEffect(()=>{
       axios.get(`http://localhost:3000/api/emp-list`)
       .then((response)=>{
-          setLists(response.data);
+          setLists(response.data.data);
           console.log(response)
+         setServerMessage(response.data.message)
+        //  alert(response.data.message)
       })
       .catch((error)=>{
          console.log("get eror:",error.message? error.message:error)
-       
+         setServerMessage(response.data.message,response.data.statuscode);
        })
     },[])
    
@@ -32,9 +35,10 @@ export default function EmployeeProfileComponent(){
 //  UI
 return (
     <>
+     {serverMessage && <p>{serverMessage}</p>}
     <div className="listTable">
 
-        <h2 style={{textAlign:"center"}}>EMPLOYEE LIST</h2>
+        <h2 style={{textAlign:"center",color:"white"}}>EMPLOYEE LIST</h2>
 
      
      <div className="container">
@@ -52,7 +56,7 @@ return (
           </tr>
         </thead>
         <tbody>
-        {Lists.data.map((list,index) => {
+        {Lists.map((list,index) => {
        return (
         <tr key={list._id}>
           <td>{index+1}</td>
